@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <!-------- Bootstrap --------->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet" />
+    <script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-------- Bootstrap --------->
+
+    <!-- Personal Style -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+</head>
+<body>
+<div th:replace="base :: navlinks"></div>
+<div class="square">
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Login Page</h1>
+            <div th:if="${param.error}">
+                Invalid username or password
+            </div>
+            <div th:if="${param.logout}">
+                You have been logged out
+            </div>
+            <div class="card-body px-lg-5 pt-0">
+                <form th:action="@{/login}" method="post">
+                    <div><label>User name: <input class="form-control" size="45" type="text" name="username" /> </label></div>
+                    <div><label>Password: <input class="form-control" size="45" type="password" name="password" /> </label></div>
+
+                    <div><input type="submit" value="Sign in" class="btn btn-primary" /></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
