@@ -30,6 +30,8 @@
             <p th:inline="text"> <b>Posted By:</b>  [[${message.sentBy}]]</p>
             <p th:inline="text"><b>Date:</b>  [[${message.postedDate}]] </p><br/>
 
+            <a th:href="@{/update/{id}(id=${message.id})}"> Edit this Message</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a th:href="@{/delete/{id}(id=${message.id})}"> Delete this Message </a>
             <hr />
         </div>
     </div>

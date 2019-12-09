@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.security.Principal;
 import java.util.Map;
 
+
 @Controller
 public class HomeController {
 
@@ -43,14 +44,6 @@ public class HomeController {
         }
         return "home";
     }
-    //***not sure??
-    /*
-    @RequestMapping("/index")
-    public String index() {
-        return "home";
-    }
-    //****
-    */
 
     @RequestMapping("/login")
     public String login() {
@@ -67,20 +60,6 @@ public class HomeController {
         return "secure";
     }
 
-    //******* search
-     /*
-    @PostMapping("/search")
-    public String search(Model model, @RequestParam("search") String search){
-        //model.addAttribute("departments", departmentRepository.findByDeptNameContainingIgnoreCase(search));
-        return "search";
-    }
-
-      */
-    //*******
-
-
-
-    //***from boolhorn*****
     @RequestMapping("/")
     public String listMessages(Model model){
         model.addAttribute("messages", messageRepository.findAll());
@@ -95,7 +74,8 @@ public class HomeController {
 
     @PostMapping("/process")
     public String processForm(@Valid Message message, BindingResult result, @ModelAttribute Message messagec,
-                              @RequestParam("file") MultipartFile file ) {
+                              @RequestParam("file") MultipartFile file) {
+
         if (result.hasErrors()) {
             return "messageform";
         }
@@ -117,8 +97,19 @@ public class HomeController {
         return "redirect:/";
 
     }
-}
 
+    @RequestMapping("/update/{id}")
+    public String updateMessage(@PathVariable("id") long id, Model model){
+        model.addAttribute("message", messageRepository.findById(id).get());
+        return "messageform";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String delMessage(@PathVariable("id") long id){
+        messageRepository.deleteById(id);
+        return "redirect:/";
+    }
+}
 
 
 

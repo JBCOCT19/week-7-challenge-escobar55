@@ -21,7 +21,11 @@
     <div class="jumbotron">
         <h1> Add a new Message!</h1>
         <div class="card-body px-lg-5 pt-0">
-        <form action="#" th:action="@{/process}" th:object="${message}" method="POST" enctype="multipart/form-data" >
+        <form action="#" th:action="@{/process}"
+              th:object="${message}"
+              method="POST"
+              enctype="multipart/form-data">
+            <input type="hidden" th:field="*{id}"/>
             Message: <textarea class="form-control" size="45" rows="3" th:field="*{content}" />
             <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"> </span> <br />
             Sent By: <input class="form-control" size="45" type="text" th:field="*{sentBy}" />
